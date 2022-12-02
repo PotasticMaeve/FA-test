@@ -6,10 +6,10 @@ http://fairatmos.claudiafelicia.com/
 
 ## What's inside
 - [x] simple page for displaying project group by categories
-- [x] project can be sorted based on carbon number
+- [x] card can be sorted based on carbon number
 - [x] search feature by name
-- [ ] responsive design
-- [ ] test case   
+- [x] responsive design
+- [ ] test case
 
 ## Installation
 This section contains how to install the project on your machine
