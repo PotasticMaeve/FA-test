@@ -2,6 +2,7 @@ const PROJECT_LIST = [
     {
         id: 0,
         title: 'Agroforestry Project Cikanyere Hamlet',
+        image: '/images/bg1.png',
         category: 'Agriculture, AFOLU',
         partner: 'Edufarmers',
         location: 'Cikanyere Hamlet, Cikanyere, Cianjur, West Java',
@@ -14,6 +15,7 @@ const PROJECT_LIST = [
     {
         id: 1,
         title: 'Mangrove Restoration Project Ujungalang Village',
+        image: '/images/bg2.png',
         category: 'Agriculture, AFOLU',
         partner: 'Lindungi Hutan',
         location: 'Ujungalang village, Cilacap Regency, Central Java, Indonesia',
@@ -26,6 +28,7 @@ const PROJECT_LIST = [
     {
         id: 2,
         title: 'Mangrove Restoration Project Muara Badak Ulu and Handil Terusan Villages',
+        image: '/images/bg3.png',
         category: 'Agriculture, AFOLU',
         partner: 'Titian Lestari',
         location: 'Muara Badak Ulu and Handil Terusan villages, Kutai Kartanegara Regency, East Kalimantan',

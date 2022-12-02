@@ -19,7 +19,6 @@
 .panel {
     display: flex;
     flex-direction: column;
-    /* background-color: #e2e4e6; */
     background-color: #89b0ae;
     max-height: calc(100vh - 12rem);
     border-radius: 8px;
@@ -39,7 +38,7 @@
     padding: 1.2rem 1rem;
 }
 .ant-card {
-    width: 300px;
+    width: 320px;
 }
 .ant-card .ant-card-body {
     padding: 10px 15px !important;
@@ -103,4 +102,23 @@
 }
 .sort-btn {
     margin-right: 8px;
+}
+.badge-carbon {
+    z-index: 99;
+    border-radius: 20px;
+    padding: 0 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #fff;
+    position: absolute;
+    left: 8px;
+    top: 10px;
+}
+.badge-carbon > i {
+    color: red;
+    margin-right: 5px;
+}
+.badge-carbon > .ant-typography {
+    font-size: 13px;
 }
