@@ -43,7 +43,7 @@ export default function Project() {
                 >
                   <Text className="card-title">{el.title}</Text>
                   <Col span={24}>
-                    {index === i ? (
+                    {index === el.id ? (
                       <Paragraph
                         className='card-desc'
                       >
@@ -52,8 +52,8 @@ export default function Project() {
                     ) : (
                       <Paragraph
                         ellipsis={{
-                          rows: index === i ? undefined : 3,
-                          expandable: index === i,
+                          rows: index === el.id ? undefined : 3,
+                          expandable: index === el.id,
                           symbol: <></>,
                           onEllipsis: (ell) => setIsEllipsis(ell)
                         }}
@@ -68,9 +68,9 @@ export default function Project() {
                       type='text'
                       className='card-btn'
                       size='small'
-                      onClick={() => index === i ? setIndex(undefined) : setIndex(i)}
+                      onClick={() => index === el.id ? setIndex(undefined) : setIndex(el.id)}
                     >
-                      {index === i ? 'Hide' : 'Read More'}
+                      {index === el.id ? 'Hide' : 'Read More'}
                     </Button>
                   ) : (
                     <></>
