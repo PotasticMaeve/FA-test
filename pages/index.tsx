@@ -2,19 +2,31 @@ import { Badge, Button, Card, Col, Typography } from 'antd'
 import { useState } from 'react';
 import Layout from '../src/components/layout'
 import PROJECT_LIST from '../src/constants/project-list'
+import _ from 'lodash'
 
 export default function Project() {
   const [expand, setExpand] = useState(false)
   const [isEllipsis, setIsEllipsis] = useState(true)
-  const [indexOpen, setIndexOpen] = useState(0)
+  const [index, setIndex] = useState(undefined)
+  const [isReverseSort, setIsReverseSort] = useState(false)
 
   return (
-    <Layout seo={{ title: 'Projects' }}>
+    <Layout seo={{ title: 'Projects' }}>  
       <Col className="panel-container">
         <div className="panel">
-          <h3 className="panel-title">Category A</h3>
+          <div className="panel-header">
+            <h3 className="panel-title">Category A</h3>
+            <Button
+              type='text'
+              className='sort-btn'
+              size='small'
+              onClick={() => setIsReverseSort(!isReverseSort)}
+            >
+              {isReverseSort ? <i className="ri-sort-desc" /> : <i className="ri-sort-asc" />}
+            </Button>
+          </div>
           <ul className="panel-items">
-            {PROJECT_LIST.map((el, i) => (
+            {(_.orderBy(PROJECT_LIST, ['carbon'],[isReverseSort ? 'desc' : 'asc'])).map((el, i) => (
               <li key={i}>
                 <Card
                   cover={
@@ -27,7 +39,7 @@ export default function Project() {
                   <Badge count={el.carbon} color='#E97777' />
                   <Typography.Text className="card-title">{el.title}</Typography.Text>
                   <Col span={24}>
-                    {expand ? (
+                    {index === i ? (
                       <Typography.Paragraph
                         className='card-desc'
                       >
@@ -36,8 +48,8 @@ export default function Project() {
                     ) : (
                       <Typography.Paragraph
                         ellipsis={{
-                          rows: expand ? undefined : 3,
-                          expandable: expand,
+                          rows: index === i ? undefined : 3,
+                          expandable: index === i,
                           symbol: <></>,
                           onEllipsis: (ell) => setIsEllipsis(ell)
                         }}
@@ -52,9 +64,9 @@ export default function Project() {
                       type='text'
                       className='card-btn'
                       size='small'
-                      onClick={() => setExpand(!expand)}
+                      onClick={() => index === i ? setIndex(undefined) : setIndex(i)}
                     >
-                      {expand ? 'Hide' : 'Read More'}
+                      {index === i ? 'Hide' : 'Read More'}
                     </Button>
                   ) : (
                     <></>
