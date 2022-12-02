@@ -1,6 +1,5 @@
-import { Button, Card, Col, Typography, Input } from 'antd'
+import { Button, Card, Col, Typography, Input, Image } from 'antd'
 import { useEffect, useState } from 'react';
-import Image from 'next/image'
 import Layout from '../src/components/layout'
 import PROJECT_LIST from '../src/constants/project-list'
 import _ from 'lodash'
@@ -82,6 +81,7 @@ export default function Project() {
                   src='/images/not-found.png'
                   height={80}
                   width={80}
+                  preview={false}
                 />
                 <Text>Data Not Found</Text>
               </div>
@@ -95,9 +95,12 @@ export default function Project() {
                     </Col>
                     <Card
                       cover={
-                        <img
+                        <Image
                           alt={el.title}
                           src={el.image}
+                          height='100%'
+                          width='100%'
+                          preview={false}
                         />
                       }
                     >
