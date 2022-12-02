@@ -9,7 +9,6 @@ http://fairatmos.claudiafelicia.com/
 - [x] card can be sorted based on carbon number
 - [x] search feature by name
 - [x] responsive design
-- [ ] test case
 
 ## Installation
 This section contains how to install the project on your machine
