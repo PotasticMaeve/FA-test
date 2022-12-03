@@ -1,8 +1,8 @@
 version: "3.5"
 services: 
-  FA-test:
+  fa-test:
     build: .
-    image: claudiadev/FA-test:v1.1
-    container_name: FA-test
+    image: claudiadev/fa-test:1.0
+    container_name: fa-test
     ports: 
-      - "9000:80"
+      - "9000:3000"
