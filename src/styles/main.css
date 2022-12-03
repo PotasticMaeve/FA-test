@@ -10,16 +10,18 @@
     position: relative;
 }
 .panel-container {
+    padding: 0 10rem;
     display: grid;
     grid-template-columns: auto auto auto;
     height: 100vh;
     justify-items: center;
     align-items: center;
+    background-image: linear-gradient(120deg, #a1c4fd 0%, #c2e9fb 100%);
 }
 .panel {
     display: flex;
     flex-direction: column;
-    background-color: #89b0ae;
+    background-image: linear-gradient(to top, #a3bded 0%, #6991c7 100%);
     height: calc(100vh - 12rem);
     border-radius: 8px;
     width: 340px;
@@ -81,7 +83,7 @@
 }
 .panel-footer {
     height: 2rem;
-    background-color: #89b0ae;
+    background-color: #9FBAEA;
     border-radius: 0 0 8px 8px;
 }
 .panel-items {
@@ -174,6 +176,7 @@ span.ant-input-suffix > p > i {
 /* SUPER MINI */
 @media screen and (min-width: 150px){
     .panel-container {
+        padding: 0;
         display: grid;
         grid-template-columns: auto;
         justify-items: center;
@@ -183,6 +186,7 @@ span.ant-input-suffix > p > i {
 /* MINI */
 @media screen and (min-width: 360px){
     .panel-container {
+        padding: 0;
         display: grid;
         grid-template-columns: auto;
         height: 100vh;
@@ -193,6 +197,7 @@ span.ant-input-suffix > p > i {
 /* SEMI MINI */
 @media screen and (min-width: 380px){
     .panel-container {
+        padding: 0;
         display: grid;
         grid-template-columns: auto;
         justify-items: center;
@@ -202,6 +207,7 @@ span.ant-input-suffix > p > i {
 /* MIDDLE MINI */
 @media screen and (min-width: 200px){
     .panel-container {
+        padding: 0;
         display: grid;
         grid-template-columns: auto;
         justify-items: center;
@@ -211,6 +217,7 @@ span.ant-input-suffix > p > i {
 /* MOBILE */
 @media screen and (min-width: 400px){
     .panel-container {
+        padding: 0;
         display: grid;
         grid-template-columns: auto;
         justify-items: center;
@@ -220,6 +227,7 @@ span.ant-input-suffix > p > i {
 /* SEMI TABLETS */
 @media screen and (min-width: 500px){
     .panel-container {
+        padding: 0;
         display: grid;
         grid-template-columns: auto;
         height: 100vh;
@@ -230,6 +238,7 @@ span.ant-input-suffix > p > i {
 /* TABLETS */
 @media screen and (min-width: 600px){
     .panel-container {
+        padding: 0 3rem;
         display: grid;
         grid-template-columns: auto auto;
         height: 100vh;
@@ -240,6 +249,7 @@ span.ant-input-suffix > p > i {
 /* DESKTOP */
 @media screen and (min-width: 1025px){
     .panel-container {
+        padding: 0 10rem;
         display: grid;
         grid-template-columns: auto auto auto;
         height: 100vh;

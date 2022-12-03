@@ -1,5 +1,5 @@
-import { Button, Card, Col, Typography, Input, Image } from 'antd'
-import { useEffect, useState } from 'react';
+import { Button, Card, Col, Typography, Input, Image, Tooltip } from 'antd'
+import { useState } from 'react';
 import Layout from '../src/components/layout'
 import _ from 'lodash'
 import { GetServerSideProps } from 'next';
@@ -17,78 +17,95 @@ export default function Project(props) {
   const [keyword, setKeyword] = useState("")
   const [searchResult, setSearchResult] = useState([])
 
-  // const handleChangeSearch = (key) => { 
-  //   setKeyword(key)
-  //   if (key !== "") {
-  //     const data = projectList.filter(x => x.category === categoryIndex).filter((el) => {      
-  //       if (el.title.toLowerCase().includes(key.toLowerCase())) {
-  //         return el
-  //       }
-  //     })
-  //     setSearchResult(data)
-  //   }
-  // }
+  const handleChangeSearch = (key) => {
+    setKeyword(key)
+    if (key !== "") {
+      const data = projectList.filter(x => x.category === categoryIndex).filter((el) => {
+        if (el.title.toLowerCase().includes(key.toLowerCase())) {
+          return el
+        }
+      })
+      setSearchResult(data)
+    }
+  }
 
   const displayCardByCategory = (id) => {
-    const data = searchResult.length && categoryIndex === id ? searchResult : projectList.filter(x => x.category === id)
+    const data = categoryIndex === id && keyword ? searchResult : projectList.filter(x => x.category === id)
     return (
       <ul className="panel-items">
-        {(_.orderBy(data, ['carbon_number'], [categoryIndex === id && isReverseSort ? 'desc' : 'asc']).map((el, i) => (
-          <li key={i}>
-            <Col className='badge-carbon centerize'>
-              <i className="ri-virus-fill" />
-              <Text>{el.carbon_number}</Text>
-            </Col>
-            <Card
-              cover={
-                <Image
-                  alt={el.title}
-                  src={el.image_url}
-                  height='100%'
-                  width='100%'
-                  preview={false}
-                />
-              }
-            >
-              <Text className='label-partner'>{el.partner}</Text>
-              <Text className="card-title">{el.title}</Text>
-              <Col span={24}>
-                {index === el.id ? (
-                  <Paragraph
-                    className='card-desc'
-                  >
-                    {el.overview}
-                  </Paragraph>
-                ) : (
-                  <Paragraph
-                    ellipsis={{
-                      rows: index === el.id ? undefined : 3,
-                      expandable: index === el.id,
-                      symbol: <></>,
-                      onEllipsis: (ell) => setIsEllipsis(ell)
-                    }}
-                    className='card-desc'
-                  >
-                    {el.overview}
-                  </Paragraph>
-                )}
-              </Col>
-              {isEllipsis ? (
-                <Button
-                  type='text'
-                  className='card-btn'
-                  size='small'
-                  onClick={() => index === el.id ? setIndex(undefined) : setIndex(el.id)}
+        {!data.length ? (
+          <div className='centerize empty-state'>
+            <Image
+              alt='data-not-found'
+              src='/images/not-found.png'
+              height={80}
+              width={80}
+              preview={false}
+            />
+            <Text>Data Not Found</Text>
+            <Text>Try another category</Text>
+          </div>
+        ) : (
+          <>
+            {(_.orderBy(data, ['carbon_number'], [categoryIndex === id && isReverseSort ? 'desc' : 'asc']).map((el, i) => (
+              <li key={i}>
+                <Col className='badge-carbon centerize'>
+                  <i className="ri-virus-fill" />
+                  <Text>{el.carbon_number} carbon</Text>
+                </Col>
+                <Card
+                  cover={
+                    <Image
+                      alt={el.title}
+                      src={el.image_url}
+                      height='100%'
+                      width='100%'
+                      preview={false}
+                    />
+                  }
                 >
-                  {index === el.id ? 'Hide' : 'Read More'}
-                </Button>
-              ) : (
-                <></>
-              )}
-            </Card>
-          </li>
-        )))}
-      </ul>
+                  <Text className='label-partner'>{el.partner}</Text>
+                  <Text className="card-title">{el.title}</Text>
+                  <Col span={24}>
+                    {index === el.id ? (
+                      <Paragraph
+                        className='card-desc'
+                      >
+                        {el.overview}
+                      </Paragraph>
+                    ) : (
+                      <Paragraph
+                        ellipsis={{
+                          rows: index === el.id ? undefined : 3,
+                          expandable: index === el.id,
+                          symbol: <></>,
+                          onEllipsis: (ell) => setIsEllipsis(ell)
+                        }}
+                        className='card-desc'
+                      >
+                        {el.overview}
+                      </Paragraph>
+                    )}
+                  </Col>
+                  {isEllipsis ? (
+                    <Button
+                      type='text'
+                      className='card-btn'
+                      size='small'
+                      onClick={() => index === el.id ? setIndex(undefined) : setIndex(el.id)}
+                    >
+                      {index === el.id ? 'Hide' : 'Read More'}
+                    </Button>
+                  ) : (
+                    <></>
+                  )}
+                </Card>
+              </li>
+            )))}
+          </>
+        )
+        }
+      </ul >
     )
   }
 
@@ -97,16 +114,13 @@ export default function Project(props) {
     setIsReverseSort(!isReverseSort)
   }
 
-  // const handleSearch = (id) => {
-  //   setCategoryIndex(id)
-  //   setShowSearch(!showSearch)
-  // }
-
-  useEffect(() => {
-    if (!keyword.length) {
-      setSearchResult(projectList.filter(x => x.category === categoryIndex))
-    }
-  }, [keyword])
+  const handleSearch = (id) => {
+    setShowSearch(false)
+    setSearchResult([])
+    setKeyword("")
+    setCategoryIndex(id)
+    setShowSearch(!showSearch)
+  }
 
   return (
     <Layout seo={{ title: 'Projects' }}>
@@ -116,14 +130,17 @@ export default function Project(props) {
             <div className="panel-header">
               <h3 className="panel-title">{el.name}</h3>
               <div>
-                {/* <Button
+              <Tooltip placement="bottomLeft" title='Search'>
+                <Button
                   type='text'
                   className='sort-btn'
                   size='small'
                   onClick={() => handleSearch(el.id)}
-                >
+                  >
                   {categoryIndex === el.id && showSearch ? <i className="ri-close-fill" /> : <i className="ri-search-line" />}
-                </Button> */}
+                </Button>
+                  </Tooltip>
+                  <Tooltip placement="bottomLeft" title='Sort by Carbon'>
                 <Button
                   type='text'
                   className='sort-btn'
@@ -132,9 +149,10 @@ export default function Project(props) {
                 >
                   {categoryIndex === el.id && isReverseSort ? <i className="ri-sort-asc" /> : <i className="ri-sort-desc" />}
                 </Button>
+                  </Tooltip>
               </div>
             </div>
-            {/* {categoryIndex === el.id && showSearch && (
+            {categoryIndex === el.id && showSearch && (
               <div>
                 <Input
                   className='search'
@@ -147,7 +165,7 @@ export default function Project(props) {
                   }
                 />
               </div>
-            )} */}
+            )}
             {displayCardByCategory(el.id)}
             <div className="panel-footer" />
           </div>
