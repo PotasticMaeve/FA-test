@@ -189,7 +189,7 @@ span.ant-input-suffix > p > i {
         padding: 0;
         display: grid;
         grid-template-columns: auto;
-        height: 100vh;
+        height: auto;
         justify-items: center;
         align-items: center;
     }
@@ -199,6 +199,7 @@ span.ant-input-suffix > p > i {
     .panel-container {
         padding: 0;
         display: grid;
+        height: auto;
         grid-template-columns: auto;
         justify-items: center;
         align-items: center;
@@ -209,6 +210,7 @@ span.ant-input-suffix > p > i {
     .panel-container {
         padding: 0;
         display: grid;
+        height: auto;
         grid-template-columns: auto;
         justify-items: center;
         align-items: center;
@@ -219,6 +221,7 @@ span.ant-input-suffix > p > i {
     .panel-container {
         padding: 0;
         display: grid;
+        height: auto;
         grid-template-columns: auto;
         justify-items: center;
         align-items: center;
@@ -229,8 +232,8 @@ span.ant-input-suffix > p > i {
     .panel-container {
         padding: 0;
         display: grid;
+        height: auto;
         grid-template-columns: auto;
-        height: 100vh;
         justify-items: center;
         align-items: center;
     }
@@ -240,8 +243,8 @@ span.ant-input-suffix > p > i {
     .panel-container {
         padding: 0 3rem;
         display: grid;
+        height: auto;
         grid-template-columns: auto auto;
-        height: 100vh;
         justify-items: center;
         align-items: center;
     }
